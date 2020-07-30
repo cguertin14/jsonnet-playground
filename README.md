@@ -27,27 +27,51 @@ $ jb install github.com/jsonnet-libs/k8s-alpha/1.18
 
 ### Show Jsonnet result
 
-For example, with the `environments/default/main.jsonnet` file, you would run this command:
+For example, with the `environments/nginx/main.jsonnet` file, you would run this command:
 ```console
-$ tk show environments/default
+$ tk show environments/nginx
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: nginx
+  name: nginx
+  namespace: default
+spec:
+  ports:
+  - name: nginx-port
+    port: 80
+    targetPort: 80
+  selector:
+    name: nginx
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: foo-prod
+  name: nginx
   namespace: default
 spec:
+  minReadySeconds: 10
   replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      name: nginx
   template:
     metadata:
       labels:
-        app: name
+        name: nginx
     spec:
       containers:
-      - image: foo/bar
-        name: foo
+      - image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: port
 ```
 
 ## References/Guides
 
 - [Tanka Tutorials](https://tanka.dev/tutorial/overview)
-- [Tanka apply](https://tanka.dev/output-filtering)
+- [Tanka Apply](https://tanka.dev/output-filtering)
