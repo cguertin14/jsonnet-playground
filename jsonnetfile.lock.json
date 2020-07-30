@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "dependencies": [
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/anguslees/kustomize-libsonnet.git",
+          "subdir": ""
+        }
+      },
+      "version": "baaab720c7e275100f1f5b008693dd6c90671ffe",
+      "sum": "As0w0mudMJHdFTdKfpbevfhOrmPYCZtTIncvoJicrqk="
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/jsonnet-libs/k8s-alpha.git",
+          "subdir": "1.18"
+        }
+      },
+      "version": "5e7ef40fd1366a02e25f3216a6711848b3f92e07",
+      "sum": "lYY1p62cGZtcIup+wjWwMwAElBsg6vGe17UXZG5jIZk="
+    }
+  ],
+  "legacyImports": false
+}
